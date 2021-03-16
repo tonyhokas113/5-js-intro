@@ -159,9 +159,8 @@ const daliklis = 7;
 let skaicius = 0;
 
 for (let i = nuo; i <= iki; i++) {
-    const result = i;
     const dalyba = i % daliklis;
-    console.log(dalyba);
+    console.log(i, dalyba);
     if (i % daliklis === 0) {
         skaicius++;
     }
@@ -171,3 +170,23 @@ const answer = `Skaičių intervale tarp ${nuo} ir ${iki},
 besidalijančių be liekanos iš ${daliklis} yra ${skaicius} vienetai.`
 
   console.log(answer);
+
+  console.log('--------------------------------');
+
+  //v2 atrenkame tik sveikus skaicius Number.isInteger()
+
+  const from = 0;
+const to = 11;
+const divider = 7;
+let count = 0;
+
+for (let i = from; i < to; i++) {
+    const liekana = i / divider;
+    if (Number.isInteger(i/divider)) {
+        count++
+    }
+    console.log(i, liekana,);
+}
+const ats = `Skaičių intervale tarp ${from} ir ${to}, 
+besidalijančių be liekanos iš ${divider} yra ${count} vienetai.`
+ console.log(ats);
