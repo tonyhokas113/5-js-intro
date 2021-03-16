@@ -97,25 +97,25 @@ console.log(veiksmai3);
 
 console.log('--------------------------------');
 
-const a = raides1[0];
-const b = raides1[1];
+const a = raides1[4];
+const b = raides1[3];
 const c = raides1[2];
-const d = raides1[3];
-const e = raides1[4];
+const d = raides1[1];
+const e = raides1[0];
 console.log(a + ', ' + b + ', ' + c + ', ' + d + ', ' + e);
 
-const f = raides2[0];
-const g = raides2[1];
+const f = raides2[4];
+const g = raides2[3];
 const h = raides2[2];
-const i = raides2[3];
-const j = raides2[4];
+const i = raides2[1];
+const j = raides2[0];
 console.log(f + ', ' + g + ', ' + h + ', ' + i + ', ' + j);
 
-const l = raides3[0];
-const k = raides3[1];
+const l = raides3[4];
+const k = raides3[3];
 const m = raides3[2];
-const n = raides3[3];
-const o = raides3[4];
+const n = raides3[1];
+const o = raides3[0];
 console.log(l + ', ' + k + ', ' + m + ', ' + n + ', ' + o);
 
 console.log('--------------------------------');
@@ -269,9 +269,3 @@ if (sarasas1 <= sarasas2) {
 else {
     console.log('Bandykite dar karta');
 }
-
-console.log('--------------------------------');
-
-console.log('Ciklo for panaudojimas');
-
-console.log('--------------------------------');
