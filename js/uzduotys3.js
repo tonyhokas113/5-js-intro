@@ -13,11 +13,29 @@ console.log(tusciaFunkcija());
 console.log('--------------------------------');
 
 function daugyba(a, b) {
+    if (typeof a !== 'number' ) {
+        return `Pirmas parametras turi buti skaiciaus tipo`;
+    }
+    // sutrumpintai-kitas variantas ('' + a === 'NaN' || Math.abs(a) === Infinity)
+    // (isNaN(a) || a === Infinity || a === -Infinity)
+    // (!isFinite(a)) - tikrina reiksmes uzbaigtuma
+    if (!isFinite(a)) {
+        return `Pirmasis skaicius turi buti normalus skaicius ir negali buti: ${a}`;
+    }
+
+    if (!isFinite(a)) {
+        return `Antrasis skaicius turi buti normalus skaicius ir negali buti: ${b}`;
+    }
+    
+    if (typeof b !== 'number') {
+        return `Antras parametras turi buti skaiciaus tipo`;
+    } 
     const reiksme = a * b;
     return reiksme;
+    
 }
 
-console.log(daugyba(1, 2));
+console.log(daugyba(5, 4));
 console.log(daugyba(3, 2));
 console.log(daugyba(1, 3));
 
