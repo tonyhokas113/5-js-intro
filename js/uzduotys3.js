@@ -22,17 +22,13 @@ function daugyba(a, b) {
     if (!isFinite(a)) {
         return `Pirmasis skaicius turi buti normalus skaicius ir negali buti: ${a}`;
     }
-
     if (!isFinite(a)) {
         return `Antrasis skaicius turi buti normalus skaicius ir negali buti: ${b}`;
     }
-    
     if (typeof b !== 'number') {
         return `Antras parametras turi buti skaiciaus tipo`;
     } 
-    const reiksme = a * b;
-    return reiksme;
-    
+    return a * b;
 }
 
 console.log(daugyba(5, 4));
@@ -42,26 +38,26 @@ console.log(daugyba(1, 3));
 console.log('--------------------------------');
 
 function skaitmenuKiekisSkaiciuje(kintamasis) {
-
-    if (isNaN(kintamasis) || typeof kintamasis === 'boolean') {
-        const zinute = 'Pateikta netinkamo tipo reiksme';
-        return zinute;
+    let reiksme2 = 0;
+    if (!isFinite(kintamasis) || typeof kintamasis === 'boolean' || typeof kintamasis !== 'number') {
+        return 'Pateikta netinkamo tipo reiksme';
     }
-    else if (typeof kintamasis === 'number') {
-
-        let reiksme2 = 0;
+    if (typeof kintamasis === 'number') {
         const konvertavimas = kintamasis.toString();
         
         for (let i = 0; i < konvertavimas.length; i++) {
             reiksme2++
         }
-
-        const ats = `Rezultatas: ${reiksme2}`
-        return ats;
+    if (kintamasis % 1 !==0) {
+        reiksme2--
+    }
+    if (kintamasis < 0)
+        reiksme2--
+        return `Rezultatas: ${reiksme2}`
     } 
 }
 
-console.log(skaitmenuKiekisSkaiciuje(1));
+console.log(skaitmenuKiekisSkaiciuje(5.4));
 
 console.log('--------------------------------');
 
