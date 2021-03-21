@@ -59,58 +59,216 @@ function skaitmenuKiekisSkaiciuje(kintamasis) {
 
 console.log(skaitmenuKiekisSkaiciuje(5.4));
 
+
+/*
+v2
+
+function digits(skaicius) {
+    // input validation
+    if (typeof skaicius !== 'number') {
+        return 'ERROR: turi buti skaiciaus tipas';
+    }
+    if (!isFinite(skaicius)) {
+        return `ERROR: ${skaicius} nera normalus skaicius`;
+    }
+
+    // logic
+    const tekstinisSkaicius = '' + skaicius;
+    let skaitmenuKiekis = tekstinisSkaicius.length;
+
+    // jei skaicius turi desimtaine dali, tai sumaziname 1 vienetu
+    if (skaicius % 1 !== 0) {
+        skaitmenuKiekis--;
+    }
+
+    // jei skaicius yra neigiamas, tai sumaziname 1 vienetu
+    if (skaicius < 0) {
+        skaitmenuKiekis--;
+    }
+
+
+    // return result
+    return skaitmenuKiekis;
+}
+
+console.log(digits(true));
+console.log(digits('asd'));
+console.log(digits(NaN));
+console.log(digits(Infinity));
+console.log(digits(-Infinity));
+console.log(digits());
+console.log(digits(undefined));
+console.log(digits(null));
+console.log(digits([]));
+console.log(digits(''));
+console.log(digits([4624]));
+console.log(digits(digits));
+
+console.log(digits(5), '->', 1);
+console.log(digits(781), '->', 3);
+console.log(digits(37060123456), '->', 11);
+console.log(digits(3.1415), '->', 5);
+console.log(digits(+3.1415), '->', 5);
+console.log(digits(-456), '->', 3);
+console.log(digits(-3.1415), '->', 5);
+
+console.log('Koks sprendimas norint rasti standartines skaiciaus israiskos "turimu" skaitmenu kieki?');
+console.log(digits(100000000000000000000000000000000000000000000000000), '->', 51);
+console.log(digits(100000000000000000000000000000), '->', 30);
+console.log(digits(0.00000000000000000000000000001), '->', 30);
+
+*/
+
 console.log('--------------------------------');
 
-//Ar galima naudoti keleta return reiksmiu funkcijoje, ar geriau naudoti console.log?
+//Math.max/min(...[1,2,3]) gali is array istraukti skaicius ir surasti didziausia/maziausia skaiciu liste
 
 function didziausiasSkaiciusSarase(variable) {
     if (Array.isArray(variable) === false) {
-       const message = 'Pateikta netinkamo tipo reiksme';
-       return (message);
-    } 
-    else if (variable.length === 0) {
-        const message2 = 'Pateiktas sarasas negali buti tuscias';
-        return(message2);
+       return 'Pateikta netinkamo tipo reiksme';
     }
-    else {
-        let largest = variable[0];
-        let highestNr;
-        for (let i = 0; i < variable.length; i++) {
-            highestNr = variable[i];
-            largest = Math.max(largest, highestNr)
+    if (variable.length === 0) {
+        return 'Pateiktas sarasas negali buti tuscias';
+    }  
+
+    let biggest = -Infinity;
+    for (let i = 0; i < variable.length; i++) {
+        const number = variable[i];
+
+        // ar tai normalus skaicius
+        if (typeof number !== 'number' || !isFinite(number)) {
+            continue;            // eina i sekancia ciklo iteracija
         }
-        const answer = `Rezultatas: ${largest}`;
-        return answer;
+
+        // ar jis didesnis uz jau zinoma didziausia skaiciu
+        if (number > biggest) {
+            biggest = number;
+        }
     }
+
+    // logic validation
+    if (biggest === -Infinity) {
+        return 'ESarase nerastas nei vienas normalus skaicius';
+    }
+    return biggest;
+}  
+
+console.log(didziausiasSkaiciusSarase([8, 200, 905]));
+
+/* v2
+
+function bigNum(list) {
+    // input validation
+    if (!Array.isArray(list)) {
+        return 'ERROR: netinkamas tipas, turi buti array (sarasas)';
+    }
+    if (list.length === 0) {
+        return 'ERROR: array is empty';
+    }
+
+    // logic
+    let biggest = -Infinity;
+
+    for (let i = 0; i < list.length; i++) {
+        const number = list[i];
+
+        // ar tai normalus skaicius
+        if (typeof number !== 'number' || !isFinite(number)) {
+            continue;            // eina i sekancia ciklo iteracija
+        }
+
+        // ar jis didesnis uz jau zinoma didziausia skaiciu
+        if (number > biggest) {
+            biggest = number;
+        }
+    }
+
+    // logic validation
+    if (biggest === -Infinity) {
+        return 'ERROR: sarase nerastas nei vienas normalus skaicius';
+    }
+
+    // result
+    return biggest;
 }
-console.log(didziausiasSkaiciusSarase([301, 200, 905]));
+
+// console.log(bigNum('pomidoras'));
+// console.log(bigNum(484562));
+// console.log(bigNum(true));
+// console.log(bigNum(false));
+// console.log(bigNum(undefined));
+// console.log(bigNum());
+// console.log(bigNum(bigNum));
+// console.log(bigNum(null));
+// console.log(bigNum({}));
+// console.log(bigNum([]));
+
+console.log(bigNum([1]), '->', 1);
+console.log(bigNum([1, 2, 3]), '->', 3);
+console.log(bigNum([-5, 78, 14, 0, 18]), '->', 78);
+console.log(bigNum([69, 69, 69, 69, 66]), '->', 69);
+console.log(bigNum([-1, -2, -3, -4, -5, -6, -7, -8]), '->', -1);
+console.log(bigNum([-11, -2, -35, -4, -5, -6, -7, -8]), '->', -2);
+
+console.log(bigNum([1, 8, 3, 5, Infinity]), '->', 8);
+console.log(bigNum([1, 8, Infinity, 3, 5]), '->', 8);
+console.log(bigNum([Infinity, 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([1, 8, 3, 5, 'pomidoras']), '->', 8);
+console.log(bigNum([1, 8, 'pomidoras', 3, 5]), '->', 8);
+console.log(bigNum(['pomidoras', 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([1, 8, 3, 5, true]), '->', 8);
+console.log(bigNum([1, 8, true, 3, 5]), '->', 8);
+console.log(bigNum([true, 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([1, 8, 3, 5, null]), '->', 8);
+console.log(bigNum([1, 8, null, 3, 5]), '->', 8);
+console.log(bigNum([null, 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([1, 8, 3, 5, undefined]), '->', 8);
+console.log(bigNum([1, 8, undefined, 3, 5]), '->', 8);
+console.log(bigNum([undefined, 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([1, 8, 3, 5, NaN]), '->', 8);
+console.log(bigNum([1, 8, NaN, 3, 5]), '->', 8);
+console.log(bigNum([NaN, 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([1, 8, 3, 5, '']), '->', 8);
+console.log(bigNum([1, 8, '', 3, 5]), '->', 8);
+console.log(bigNum(['', 1, 8, 3, 5]), '->', 8);
+
+console.log(bigNum([Infinity, null, 'sads', true, 888]), '->', 888);
+console.log(bigNum([Infinity, null, 888, 'sads', true]), '->', 888);
+console.log(bigNum([888, Infinity, null, 'sads', true]), '->', 888);
+
+console.log(bigNum(['888', Infinity, null, 'sads', true]));
+
+// recursion
+console.log(bigNum([-5, 78, [14, 999], 0, 18]), '->', 999);
+
+*/
 
 console.log('--------------------------------');
 
 function isrinktiRaides(tekstas, raide) {
     if (typeof tekstas !== 'string') {
-        const netinkamasTipas = 'Pirmasis kintamasis yra netinkamo tipo';
-        return netinkamasTipas; 
+        return 'Pirmasis kintamasis yra netinkamo tipo';
     }
     else if (tekstas.length === 0 || tekstas.length > 100) {
-        const netinkamasDydis = 'Pirmojo kintamojo reiksme yra netinkamo dydzio';
-        return netinkamasDydis;
+        return 'Pirmojo kintamojo reiksme yra netinkamo dydzio';
     }
     else if (typeof raide !== 'number') {
-        const netinkamoTipo = 'Antrasis kintamasis yra netinkamo tipo';
-        return netinkamoTipo;
+        return 'Antrasis kintamasis yra netinkamo tipo';
     }
     else if (raide <= 0) {
-        const kintamojoDydis = 'Antrasis kintamasis turi buti didesnis uz nuli';
-        return kintamojoDydis;
+        return 'Antrasis kintamasis turi buti didesnis uz nuli';
     }
     else if (raide > tekstas.length) {
-        const dydis = 'Antrasis kintamasis turi buti ne didesnis uz pateikto teksto ilgi';
-        return dydis;
+        return 'Antrasis kintamasis turi buti ne didesnis uz pateikto teksto ilgi';
     }
     else if (raide % 1 !== 0) {
-        const sveikasis = 'Antrasis kintamasis turi buti sveikas skaicius';
-        return sveikasis;
+        return 'Antrasis kintamasis turi buti sveikas skaicius';
     }
     else {
         let raides = '';
@@ -123,15 +281,10 @@ function isrinktiRaides(tekstas, raide) {
                     raides += tekstas[i];
                 }
             }
-        const result = `Rezultatas = ${raides}`;
-        return result;   
+        return `Rezultatas = ${raides}`; 
         }
 }
 
 console.log(isrinktiRaides('abcd', 2));
 
 console.log('--------------------------------');
-
-function dalyba(d, e) {
-    
-}
