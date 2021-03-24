@@ -214,6 +214,8 @@ console.log(short);
 
 /***************************************************/
 
+//SORT
+
 console.clear();
 
 const sortAbc = ['a', 'ä', 'c', 'fabrikas', 'fancy', 'baklazanas', 'Bermudai', 'd', 'Antanas']
